@@ -21,8 +21,45 @@ function exercice6()
     // Quand l'image est chargÃ©e par le navigateur on la place dans le Canvas
     myImg.onload = function () {
         //On place l'image
-        ctx.drawImage(myImg,canvas.width/2 - myImg.naturalWidth / 2,canvas.height/2 - myImg.naturalHeight / 2);
+        ctx.drawImage(myImg,canvas.width/2 - myImg.naturalWidth / 2,canvas.height/2 - myImg.naturalHeight / 2, myImg.naturalWidth, myImg.naturalHeight);
     };
+    
+    let circle = {
+        color: "#FFD65B",
+        radius: 100,
+        x:canvas.width/2,
+        y:canvas.height/2,
+    }
+    
+    ctx.width = canvas.width;
+    ctx.height = canvas.height;
+    
+    ctx.fillStyle = circle.color;
+    
+    let toggle = true;
+    
+    let idInterval = setInterval(function()
+    {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath();
+        if(!toggle)
+        {
+            
+            ctx.arc(circle.x, circle.y, circle.radius, 0, 2*Math.PI);
+            ctx.fill();
+            toggle = true;
+        }
+        else
+        {
+            
+            ctx.drawImage(myImg,canvas.width/2 - myImg.naturalWidth / 2,canvas.height/2 - myImg.naturalHeight / 2, myImg.naturalWidth, myImg.naturalHeight);
+            toggle = false;
+        }
+        
+        
+        
+        
+    }, 1000);
 }
 
 function exercice5()
